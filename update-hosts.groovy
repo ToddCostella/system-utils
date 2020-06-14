@@ -3,6 +3,7 @@ import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
 
 File tmpHosts = File.createTempFile("hosts", "txt")
+File tmpKnownHosts = File.createTempFile("known_hosts","txt")
 
 def newIp = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor)
 
@@ -36,4 +37,17 @@ if (!processed){
 
 "rm /etc/hosts".execute()
 "cp $tmpHosts.absolutePath /etc/hosts".execute()
+
+
+new File("/home/todd/.ssh/known_hosts").eachLine {
+    if (!it.startsWith(hostName)) {
+        tmpKnownHosts.append("$it\n")
+    } else {
+        println "Removed $hostName from known_hosts"
+    }
+}
+
+"rm /home/todd/.ssh/known_hosts".execute()
+"cp $tmpKnownHosts.absolutePath /home/todd/.ssh/known_hosts".execute()
+
 
