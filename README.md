@@ -36,3 +36,11 @@ Add following line to /usr/bin/groovy
 ```
 export JAVA_HOME=/root/.sdkman/candidates/java/11.0.7.hs-adpt
 ```
+
+
+## Other useful bits
+Change /etc/ssh/ssh_config HashKnownHosts no (makes reading ~/.ssh/known_hosts easier)
+
+Clean wa to remove unneeded key from known_hosts
+```ssh-keygen -R "<server>"```
+
