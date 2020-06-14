@@ -49,5 +49,5 @@ new File("/home/todd/.ssh/known_hosts").eachLine {
 
 "rm /home/todd/.ssh/known_hosts".execute()
 "cp $tmpKnownHosts.absolutePath /home/todd/.ssh/known_hosts".execute()
-
+"chown -v todd /home/todd/.ssh/known_hosts".execute()
 
